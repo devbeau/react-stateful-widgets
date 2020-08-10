@@ -1,27 +1,13 @@
 import React, {useState} from 'react';
 import { array } from 'prop-types';
 
-let todosArray = []
+let todosArray = [];
 
-function setId(arr){
-    return arr.length + 1
-}
+localStorage.getItem('todoArray') !== "n,u,l,l"
+    ? todosArray = JSON.parse(localStorage.getItem('todoArray'))
+    : todosArray = [{id: 1, name: 'default', isChecked: false}]
 
-todosArray.push({   
-        id: setId(todosArray),
-        name: 'example',
-        isChecked: false,
-    });
-todosArray.push({ 
-        id: setId(todosArray),  
-        name: 'example 2',
-        isChecked: false,
-    });
-todosArray.push({
-        id: setId(todosArray), 
-        name: 'example 3',
-        isChecked: false,
-    });
+
 
 
 // function newKey(){
@@ -73,6 +59,8 @@ function addTodo(){
     }
 }
 
+
+
     return (
         <div className='container'>
             <div>
@@ -93,6 +81,8 @@ function addTodo(){
             )
             }
             </ul>
+            {localStorage.setItem('todoArray', JSON.stringify(todos))}
         </div>
+        
     )
 }
