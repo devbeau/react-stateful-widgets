@@ -113,7 +113,7 @@ export default function Tictactoe() {
         }
     }
     return (
-        <div className='widget-tictactoe container'>
+        <div className='widget-tictactoe container'> <h2>TicTacToe</h2> 
                     {winningBoard.winning === false
                     ? <table border ='1px black solid'>
                         <tbody>

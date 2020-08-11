@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 let todosArray = [];
 
-localStorage.getItem('todoArray') !== "n,u,l,l"
+localStorage.getItem('todoArray') !== null
     ? todosArray = JSON.parse(localStorage.getItem('todoArray'))
     : todosArray = [{id: 1, name: 'default', isChecked: false, edit:false}]
 
