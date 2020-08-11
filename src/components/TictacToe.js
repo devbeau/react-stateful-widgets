@@ -47,7 +47,7 @@ export default function Tictactoe() {
         if ((cellOne === cellTwo && cellTwo === cellThree) && (cellOne !== ' ' && cellThree !== ' ' && cellThree !== ' ')){
             console.log(true);
             return true;
-        } else {return false};
+        } else {return false}
     }
     
 
@@ -68,13 +68,13 @@ export default function Tictactoe() {
             for (let cell in row){
                 console.log('3',cell, row, state[row[cell]]);
             }
+            console.log('5',rowCheck);
+            if (isEqual(rowCheck)){
+                return rowCheck[0];
+            }
             
         }
         
-        console.log('5',rowCheck);
-        if (isEqual(rowCheck)){
-            return rowCheck[0];
-        }
         for (let i = 0; i < state.length; i++){
             colCheck[i] = [];
             for (let j = 0; j <state[i].length; j++){
@@ -104,6 +104,14 @@ export default function Tictactoe() {
         return setWinningBoard({player: winner, winning: winner === ' ' ? false : true});
 
     }
+
+    function resetBoard(){
+        return () => {
+            setBoardState(boardStateArray);
+            setIsXTurn(true)
+            setWinningBoard({player: null, winning: false});
+        }
+    }
     return (
         <div className='widget-tictactoe container'>
                     {winningBoard.winning === false
@@ -111,8 +119,14 @@ export default function Tictactoe() {
                         <tbody>
                              {createBoard(boardState)}
                         </tbody>
+                        <tfoot>
+                            <button onClick={resetBoard()}>Reset</button>
+                        </tfoot>
                       </table>
-                    : <div>{winningBoard.player} has won!</div>}
+                      
+                    : <div>{winningBoard.player} has won!<button onClick={resetBoard()}>Reset Board</button></div>
+                      
+                    }
             
         </div>
     )
